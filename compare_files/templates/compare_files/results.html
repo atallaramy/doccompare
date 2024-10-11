@@ -1,2 +1,25 @@
-<h2>Document Comparison Results</h2>
-<pre>{{ differences }}</pre>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparison Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        del {
+            color: red;
+        }
+        strong {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Document Comparison Results</h1>
+    <div style="white-space: pre-wrap;">
+        {{ differences|safe }}
+    </div>
+</body>
+</html>

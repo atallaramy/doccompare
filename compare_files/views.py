@@ -1,10 +1,8 @@
 from django.shortcuts import render
-
-from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import FileUploadForm
 from docx import Document
-from difflib import unified_diff, ndiff
+from difflib import ndiff
 
 
 def get_text_from_docx(file):
@@ -15,12 +13,31 @@ def get_text_from_docx(file):
     return "\n".join(full_text)
 
 
+def highlight_differences(line1, line2):
+    diff = list(ndiff(line1.split(), line2.split()))
+    highlighted = []
+    for word in diff:
+        if word.startswith("+ "):  # Addition
+            highlighted.append(f"<strong style='color: green;'>{word[2:]}</strong>")
+        elif word.startswith("- "):  # Removal
+            highlighted.append(f"<del style='color: red;'>{word[2:]}</del>")
+        else:
+            highlighted.append(word[2:])
+    return " ".join(highlighted)
+
+
 def compare_docs(text1, text2):
     text1 = text1.splitlines()
     text2 = text2.splitlines()
 
-    diff = unified_diff(text1, text2, lineterm="", fromfile="file1", tofile="file2")
-    return "\n".join(list(diff))
+    result = []
+    for line1, line2 in zip(text1, text2):
+        if line1 != line2:
+            result.append(highlight_differences(line1, line2))
+        else:
+            result.append("")
+            result.append(line1.strip())
+    return "\n".join(result)
 
 
 def compare_files(request):
