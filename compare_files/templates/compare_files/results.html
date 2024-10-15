@@ -3,22 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comparison Results</title>
+    <title>Document Comparison Results</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            line-height: 1.6;
         }
         del {
             color: red;
+            text-decoration: line-through;
         }
         strong {
             color: green;
+        }
+        .content {
+            white-space: pre-wrap;  /* Preserve spaces and newlines */
+            word-wrap: break-word;
         }
     </style>
 </head>
 <body>
     <h1>Document Comparison Results</h1>
-    <div style="white-space: pre-wrap;">
+    <div class="content">
         {{ differences|safe }}
     </div>
 </body>
