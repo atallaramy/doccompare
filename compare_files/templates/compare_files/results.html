@@ -1,31 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Comparison Results</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-        }
-        del {
-            color: red;
-            text-decoration: line-through;
-        }
-        strong {
-            color: green;
-        }
-        .content {
-            white-space: pre-wrap;  /* Preserve spaces and newlines */
-            word-wrap: break-word;
-        }
-    </style>
+    <title>Comparison Result</title>
 </head>
 <body>
-    <h1>Document Comparison Results</h1>
-    <div class="content">
-        {{ differences|safe }}
-    </div>
+    <h1>Comparison Complete</h1>
+    <p>The output file is located at: <strong>{{ output_file }}</strong></p>
 </body>
 </html>
